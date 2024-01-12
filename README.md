@@ -2,11 +2,11 @@
 
 Azure OpenAI-powered Copilot for SAP users, enabling:
 
-A. Choosing the right product.
-B. Assisting in ordering a product (wip).
-C. Providing details of a product.
-D. Update an existing product (only the price in this demo).
-E. Enter a new product into the system.
+    A. Choosing the right product. <br>
+    B. Assisting in ordering a product (wip). <br>
+    C. Providing details of a product. <br>
+    D. Update an existing product (only the price in this demo). <br>
+    E. Enter a new product into the system. <br>
 
 Unlike traditional bots, where users are constrained to rigid, predefined pathways, this AI assistant provides the flexibility to interact in natural language. It mimics a conversational experience like interacting with a human, making it intuitive and user-friendly. Users can freely express their queries and commands in everyday language, eliminating the need to understand complex code or specific command language.
 
