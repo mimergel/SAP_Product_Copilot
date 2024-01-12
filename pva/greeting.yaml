@@ -1,0 +1,70 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    displayName: Greeting
+    includeInOnSelectIntent: false
+    triggerQueries:
+      - Good afternoon
+      - Good morning
+      - Hello
+      - Hey
+      - Hi
+
+  actions:
+    - kind: SendActivity
+      id: sendActivity_trrybo
+      activity:
+        attachments:
+          - kind: AdaptiveCardTemplate
+            cardContent: |
+              {
+                  "type": "AdaptiveCard",
+                  "version": "1.4",
+                  "body": [
+                      {
+                          "type": "TextBlock",
+                          "text": "Hello! I'm your SAP Product Copilot. I can assist you with several tasks:",
+                          "wrap": true
+                      },
+                      {
+                          "type": "TextBlock",
+                          "text": "Choose from the following options:",
+                          "wrap": true
+                      },
+                      {
+                          "type": "FactSet",
+                          "facts": [
+                              {
+                                  "title": "A.",
+                                  "value": "Help you choose the right product."
+                              },
+                              {
+                                  "title": "B.",
+                                  "value": "Assist you in ordering a product."
+                              },
+                              {
+                                  "title": "C.",
+                                  "value": "Provide details of a product."
+                              },
+                              {
+                                  "title": "D.",
+                                  "value": "Update an existing product."
+                              },
+                              {
+                                  "title": "E.",
+                                  "value": "Enter a new product into the system."
+                              }
+                          ]
+                      },
+                      {
+                          "type": "TextBlock",
+                          "text": "What can I help you with?",
+                          "wrap": true
+                      }
+                  ]
+              }
+
+    - kind: CancelAllDialogs
+      id: cancelAllDialogs_01At22

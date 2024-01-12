@@ -1,0 +1,68 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnUnknownIntent
+  id: main
+  actions:
+    - kind: ConditionGroup
+      id: Q91cOJ
+      conditions:
+        - id: C8L5xZ
+          condition: =!IsBlank(Global.FullDialog)
+
+      elseActions:
+        - kind: SetVariable
+          id: sD69u5
+          variable: Global.FullDialog
+          value: "=\"\""
+
+    - kind: InvokeFlowAction
+      id: invokeFlowAction_jzbBOf
+      input:
+        binding:
+          text: =Substitute(System.Activity.Text,"""","\""")
+          text_1: =Global.FullDialog
+
+      output:
+        binding:
+          generatedanswer: Topic.Generatedanswer
+          originalunrecognizedtriggerphrase: Topic.OriginalUnrecognizedTriggerPhrase
+
+      flowId: 28e5d437-0b8a-ee11-8179-000d3a5c657e
+
+    - kind: SendActivity
+      id: 1e7GXm
+      activity: "{Topic.Generatedanswer}"
+
+    - kind: ConditionGroup
+      id: conditionGroup_4UgqoJ
+      conditions:
+        - id: conditionItem_Z2MsM2
+          condition: =Topic.OriginalUnrecognizedTriggerPhrase = "action done"
+          actions:
+            - kind: SetVariable
+              id: setVariable_9i3PYB
+              variable: Global.FullDialog
+              value: "=\"\""
+
+            - kind: SetVariable
+              id: setVariable_ZMuPlS
+              variable: Topic.OriginalUnrecognizedTriggerPhrase
+              value: "=\"\""
+
+    - kind: SetVariable
+      id: LdqZIw
+      variable: Global.FullDialog
+      value: |-
+        =Global.FullDialog 
+        & "{""role"": ""user"", ""content"": """ & Topic.OriginalUnrecognizedTriggerPhrase & """},"
+        & "{""role"": ""assistant"", ""content"": """ & Substitute(Topic.Generatedanswer,"""","\""") & """},"
+
+    - kind: SendActivity
+      id: sendActivity_paIZAn
+      activity:
+        text:
+          - _You can ask a follow-up question directly or type "start over" for a new topic._
+        quickReplies:
+          - kind: MessageBack
+            title: Start over
+            text: Start over
