@@ -2,11 +2,11 @@
 
 Azure OpenAI-powered Copilot for SAP users, enabling:
 
-    A. Choosing the right product. <br>
-    B. Assisting in ordering a product (wip). <br>
-    C. Providing details of a product. <br>
-    D. Update an existing product (only the price in this demo). <br>
-    E. Enter a new product into the system. <br>
+- Choosing the right product.
+- Assisting in ordering a product (wip).
+- Providing details of a product.
+- Update an existing product (only the price in this demo).
+- Enter a new product into the system.
 
 Unlike traditional bots, where users are constrained to rigid, predefined pathways, this AI assistant provides the flexibility to interact in natural language. It mimics a conversational experience like interacting with a human, making it intuitive and user-friendly. Users can freely express their queries and commands in everyday language, eliminating the need to understand complex code or specific command language.
 
@@ -42,7 +42,7 @@ No more clicking through endless menus or decoding tech jargon. Just type what y
     
 # Setup
 
-## Azure OpenAI Service 
+## Azure OpenAI Service
 
 - Follow this documentation to deploy the Azure OpenAI Service: https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/create-resource?pivots=web-portal <br> 
 - Once the OpenAI Service is deployed go to the OpenAI Studio, enter Deployments and deploy the gpt-4-32k model. <br>
@@ -53,66 +53,34 @@ No more clicking through endless menus or decoding tech jargon. Just type what y
 
     ![Get URI and Key with "View Code"](images/view-code.jpg)
 
-
 ## Setup the Power Automate Flow (Flow)
 
 - Login to: https://make.powerautomate.com/ 
 - Download the Power Automate Flow as zip file: [Download the Power Automate Flow](https://github.com/mimergel/Azure_OpenAI_powered_SAP-Self-Services/raw/main/flow/SAPSelfService_1_0_0_3.zip)
-- Go to Solutions and import the flows and  including and required . 
-
-
+- Go to Solutions and import the flows including its required components:
 
     ![Import the Flow](images/import-flow.jpg) <br>
 
-- Change the connection references in below steps. This is required because the flow was imported from another environment.
-    - Get my profile (V2)
-    - Call SAP function (V2) (For case A, B & C)
-    - Send an email (V2)
-    - Post card in chat or channel
-    - Create item (in Sharepoint)
+- During the subsequent import steps you'll get asked to create the missing connections: <br>
+
+
+    ![Missing Odata Connection](images/missing-connection.jpg) <br>
+
+
+    ![Create Odata Connection](images/create-connection.jpg) <br>
+
+
 - Save the Flow
 - "Turn on" the flow.
 - In case you're insterested to understand each step in the flow: [Description of the Flow](flow/README.md)
 
 ## Adapt the HTTP Connector in the Flow
 
-- Get your Azure OpenAI URL and API-Key from the Azure Open AI Service Chat playground.
+- Enter your Azure OpenAI URL and API-Key from the Azure Open AI Service Chat playground.
 
+    ![Get URI and KEY](images/http-connector.jpg) <br>
 
-    ![Get URI and KEY](images/get-uri-key.jpg) <br>
-
-- URI example: https://[your endpoint].openai.azure.com/openai/deployments/[deployed model name]]/chat/completions?api-version=2023-07-01-preview
-- Enter the URI and KEY in the respective fields of the HTTP Connector. <br>
-
-    ![Enter URI and KEY in HTTP Connector](images/change-uri-key.jpg) <br>
-
-- For now you can enter this directly in clear text. For later production use it's recommended to configure these as secrets and put references to the secrets like seen in the screen shot. <br>
-
-
-## Adapt SAP ERP and M365 Connectors in the Flow
-
-- In the designer overview you'll see the connections showing errors. These require an update so that it will work in your environment
-- Change the connection references in below steps or delete those not required (e.g. Sharepoint list entry). This is needed because the flow was imported from another environment.
-
-    - Get my profile (V2)
-    - Call SAP function (V2) (For case A, B & C)
-    - Send an email (V2)
-    - Post card in chat or channel
-    - Create item in Sharepoint list (or delete this step if not needed)
-
-    ![Change Connections](images/change-all-connections.jpg) <br>
-
-- Change all 3 SAP ERP Connectors
-- Update the JSON connection definition in "SAP System" field to match your SAP system(s). I'll explain separately how you can change the flow to connect to multiple SAP systems. 
-
-    ![Change SAP ERP](images/change-sap-erp-1.jpg) <br>
-
--   Also update the connection to your Data Gateway in the "Change connection reference" link
-
-    ![Change SAP ERP](images/change-sap-erp-2.jpg) <br>
-
-- Now you can finally save the flow
-- And turn on the flow
+- For now you can enter this directly in clear text. For later production use it's recommended to configure these as secrets and put references to the secrets. <br>
 
 ## Setup the Power Virtual Agent (PVA)
 
