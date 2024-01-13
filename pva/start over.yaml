@@ -1,0 +1,17 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    displayName: Start Over
+    includeInOnSelectIntent: false
+    triggerQueries:
+      - let's begin again
+      - start over
+      - start again
+      - restart
+
+  actions:
+    - kind: BeginDialog
+      id: Pa47lK
+      dialog: cr680_sapProductCopilot.topic.ResetConversation

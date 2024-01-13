@@ -3,7 +3,7 @@
 Azure OpenAI-powered Copilot for SAP users, enabling:
 
 - Choosing the right product.
-- Assisting in ordering a product (final ordering is not implemented).
+- Assisting in ordering a product (wip).
 - Providing details of a product.
 - Update an existing product (only the price in this demo).
 - Enter a new product into the system.
@@ -53,26 +53,30 @@ No more clicking through endless menus or decoding tech jargon. Just type what y
 
     ![Get URI and Key with "View Code"](images/view-code.jpg)
 
-
 ## Import the Solution
 
-This step will import the required components into your environment. Make sure you're connected to your Non-PROD environment.
+This step will import the 2 flows and the Copilot into your environment.
 
-- Download the solution as zip file: [Download the Solution](https://github.com/mimergel/SAP_Product_Copilot/raw/main/solution/SAPProductCopilot_1_0_0_2.zip).
+- Login to https://make.powerapps.com/
+- Go to Solutions
+- Chose "Import solutions"
+- Browse files and select the 
+    SAPProductCopilot_[version number].zip
 
-- Login to https://make.powerapps.com/ 
-- Go to Solutions.
-- Chose "Import solution".
 
-    ![Import solution](images/import-solution.jpg) <br>
+- Publish
+- Open in Teams
 
-- Browse files and select the downloaded SAPProductCopilot_[version number].zip.
-- During the subsequent steps you'll need to update the connection references:
 
-    ![import-flow-connections](images/import-flow-connections.jpg) <br>
+## Setup the Power Automate Flow (Flow)
 
-- For Teams and Office 365 you might have already connections and you could simply choose from the list. Otherwise create these as well.
-- Create the required SAP Odata Connection:
+- Login to: https://make.powerautomate.com/ 
+- Download the Power Automate Flow as zip file: [Download the Power Automate Flow](https://github.com/mimergel/Azure_OpenAI_powered_SAP-Self-Services/raw/main/flow/SAPSelfService_1_0_0_3.zip)
+- Go to Solutions and import the flows including its required components:
+
+    ![Import the Flow](images/import-flow.jpg) <br>
+
+- During the subsequent import steps you'll need to create the missing connection(s): <br>
 
     ![Create Odata Connection](images/create-connection1.jpg) <br>
 
@@ -81,10 +85,14 @@ This step will import the required components into your environment. Make sure y
     - Username e.g.: S001234567
     - Password: xxxxxxxxxx (Note: during preview only basic authentication is available)
     
- - Now after refreshing and entering the ODATA connection reference you can proceed to import the solution.
+    Then press "import" 
 
     ![Create Odata Connection](images/create-connection2.jpg) <br>
 
+
+- Save the Flow
+- "Turn on" the flow.
+- In case you're insterested to understand each step in the flow: [Description of the Flow](flow/README.md)
 
 ## Adapt the HTTP Connector in the Flow
 
@@ -94,29 +102,62 @@ This step will import the required components into your environment. Make sure y
 
 - For now you can enter this directly in clear text. For later production use it's recommended to configure these as secrets and put references to the secrets. <br>
 
+## Setup the Power Virtual Agent (PVA)
 
-## Publish the Bot
+- Login to Copilot Studio: https://web.powerva.microsoft.com/ and create a new copilot. <br>
 
-- Login to https://web.powerva.microsoft.com/ 
-- You should see the imported copilot. If not check that you are in the same environment where you have imported the solution. 
+    ![Create Copilot Step 1](images/create-copilot1.jpg) <br>
 
-    ![Copilot](images/imported-copilot.jpg) <br>
+    You may want to turn off the leasson topics under "edit advanced options" as we don't need them. <br>
+
+    ![Create Copilot Step 1](images/create-copilot2.jpg) <br>
+
+    ![Create Copilot Step 1](images/create-copilot3.jpg) <br>
+    <br>
+
+- In the fallback topic paste the code from the provided fallback.yaml file. <br>
+- Download the fallback topic code here: [fallback.yaml](pva/fallback.yaml) <br>
+- Open the fallback topic in your bot   
 
 
-- Click on the name and then go to "Publish"
+    ![Fallback Topic](images/fallback.jpg) <br>
+
+- Open the code editor and enter the code via copy/paste. <br> 
+
+    ![Fallback Topic](images/fallback2.jpg) <br>
+
+- The last step is to configure your personal bot greeting message into the following 2 topics: 
+    - Greetings
+    - Reset Conversation <br>
+
+    Example: 
+    > I’m an AI assistant that helps you with SAP activities.
+    >
+    > I can:
+    >
+    > A.) Check if your user account exists, determine the roles assigned, and verify if it is locked.
+    >
+    > B.) Check the status of an SAP job.
+    >
+    > C.) Communicate planned maintenance schedules.
+    >
+    > What would you like me to do?
 
 
-    ![Publish](images/publish2.jpg) <br>
 
-- Go to "Settings" -> "Channels" to connect the Copilot with Teams.
+## Test & Publish the Bot
 
-    ![Connect Teams](images/connect-teams.jpg) <br>
+- Test the Bot: <br>
 
-- Finally open the Copilot in Teams by using the web app instead
-- Cancel the request to open the teams app to avoid opening your desktop app and leaving your work or school tenant.
-- Then test: 
+    ![Test](images/bot-test.jpg) <br>
 
-    ![Test](images/test.jpg) <br>
+- When OK publish the bot: <br>
+
+    ![Publish](images/publish.jpg) <br>
+
+- Open the Bot in Teams and test: <br>
+
+    ![Publish](images/bot-test-teams.jpg) <br>
 
 
 ## Troubleshooting
