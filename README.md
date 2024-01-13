@@ -5,8 +5,8 @@ Azure OpenAI-powered Copilot for SAP users, enabling:
 - Choosing the right product.
 - Assisting in ordering a product (final ordering is not implemented).
 - Providing details of a product.
-- Update an existing product (only the price in this demo).
-- Enter a new product into the system.
+- Updating an existing product (only the price in this demo).
+- Entering a new product into the system.
 
 Unlike traditional bots, where users are constrained to rigid, predefined pathways, this AI assistant provides the flexibility to interact in natural language. It mimics a conversational experience like interacting with a human, making it intuitive and user-friendly. Users can freely express their queries and commands in everyday language, eliminating the need to understand complex code or specific command language.
 
@@ -56,13 +56,13 @@ No more clicking through endless menus or decoding tech jargon. Just type what y
 
 ## Import the Solution
 
-This step will import the required components into your environment. Make sure you're connected to your Non-PROD environment.
+This step will import the required components into your environment. Make sure you are connected to your Non-PROD environment.
 
 - Download the solution as zip file: [Download the Solution](https://github.com/mimergel/SAP_Product_Copilot/raw/main/solution/SAPProductCopilot_1_0_0_2.zip).
 
 - Login to https://make.powerapps.com/ 
 - Go to Solutions.
-- Chose "Import solution".
+- Choose "Import solution".
 
     ![Import solution](images/import-solution.jpg) <br>
 
@@ -92,7 +92,7 @@ This step will import the required components into your environment. Make sure y
 
     ![Get URI and KEY](images/http-connector.jpg) <br>
 
-- For now you can enter this directly in clear text. For later production use it's recommended to configure these as secrets and put references to the secrets. <br>
+- For now you can enter this directly in clear text. For later production use it is recommended to configure these as secrets and put references to the secrets. <br>
 
 
 ## Publish the Bot
