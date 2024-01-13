@@ -95,7 +95,7 @@ This step will import the required components into your environment. Make sure y
 - For now you can enter this directly in clear text. For later production use it is recommended to configure these as secrets and put references to the secrets. <br>
 
 
-## Publish the Bot
+## Publish the Copilot
 
 - Login to https://web.powerva.microsoft.com/ 
 - You should see the imported copilot. If not check that you are in the same environment where you have imported the solution. 
@@ -114,14 +114,19 @@ This step will import the required components into your environment. Make sure y
 
 - Finally open the Copilot in Teams by using the web app instead
 - Cancel the request to open the teams app to avoid opening your desktop app and leaving your work or school tenant.
-- Then test: 
+
+## Test the Copilot
+
+A simple and quick test is to ask for details of a product:
+
+- Option C.
+- ProductID e.g.: HT-6102
 
     ![Test](images/test.jpg) <br>
 
-
 ## Troubleshooting
 
-- In case of errors most likely the flow failed.   <br>
+- In case of errors most likely the primary or the child flow failed. <br>
     - Check here: https://make.powerautomate.com/ in <br>
         - "My Flows"   <br>
         - "28-days run history"  <br>
@@ -129,4 +134,12 @@ This step will import the required components into your environment. Make sure y
 
     ![Troubleshooting 1](images/troubleshooting1.jpg) <br>
 
+- In this case the copilot (bot) was not pointing to the correct Teams Channel and I had to change the value of "cr680_sapProductCopilot" to refelct the Channel of my environment. 
+
     ![Troubleshooting 2](images/troubleshooting2.jpg) <br>
+
+ <br>
+
+Other root causes could be: 
+- SAP ES5 system not reachable
+- HTTP timeouts of the Azure OpenAI service.
