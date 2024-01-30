@@ -143,3 +143,16 @@ A simple and quick test is to ask for details of a product:
 Other root causes could be: 
 - SAP ES5 system not reachable
 - HTTP timeouts of the Azure OpenAI service.
+
+
+## Contributing
+
+Contributions to enhance the capabilities are welcome.
+
+## License
+
+This project is licensed under the MIT License.
+
+## Disclaimer
+
+THE CONTENT OF THIS REPOSITORY IS PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
